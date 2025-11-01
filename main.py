@@ -1,0 +1,27 @@
+﻿import os
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+TOKEN = os.getenv("BOT_TOKEN")  # Securely use environment variable
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Welcome! Type /pay to get payment details.")
+
+async def pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    message = (
+        "💰 *Payment Details:*\n\n"
+        "Please send your payment to this account:\n\n"
+        "🏦 Account Name: Fintech Invest\n"
+        "💳 Account Number: 1234567890\n"
+        "🏦 Bank: CBE\n\n"
+        "After payment, send your receipt here."
+    )
+    await update.message.reply_text(message, parse_mode="Markdown")
+
+app = ApplicationBuilder().token(TOKEN).build()
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("pay", pay))
+
+print("Bot is running...")
+app.run_polling()
+
