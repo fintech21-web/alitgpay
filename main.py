@@ -22,7 +22,7 @@ async def pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(message, parse_mode="Markdown")
 
 # --- Flask App Setup (to keep Render service alive) ---
-flask_app = Flask(name)
+flask_app = Flask(__name__)
 
 @flask_app.route('/')
 def home():
@@ -41,3 +41,4 @@ app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("pay", pay))
 app.run_polling()
+
