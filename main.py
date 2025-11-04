@@ -5,7 +5,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 # --- Environment Variables ---
 TOKEN = os.getenv("BOT_TOKEN")
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")  # e.g., https://your-render-url.onrender.com
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")  # e.g., https://alitgpay.onrender.com
 
 # --- Flask App ---
 flask_app = Flask(__name__)
@@ -58,8 +58,11 @@ def webhook():
 def index():
     return "Bot is running!"
 
-# Set webhook automatically
+# --- Reset webhook at startup ---
+print("Setting webhook...")
+bot.delete_webhook()  # Remove any previous webhook
 bot.set_webhook(WEBHOOK_URL + "/" + TOKEN)
+print(f"Webhook set to: {WEBHOOK_URL}/{TOKEN}")
 
 # Run Flask server
 if __name__ == "__main__":
