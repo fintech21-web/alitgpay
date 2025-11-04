@@ -8,9 +8,9 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 TOKEN = os.getenv("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("የካናዳ ፕሮሰስ  በ ስራ እና ክህሎት ሚንስቴር በኩል ለመጀመር የ መመዝገቢያ ክፍያዎን ይክፈሉ። ለመክፈል ይህን ይጫኑ ➡️ /ክፍያለመክፍል.")
+    await update.message.reply_text("የካናዳ ፕሮሰስ  በ ስራ እና ክህሎት ሚንስቴር በኩል ለመጀመር የ መመዝገቢያ ክፍያዎን ይክፈሉ። ለመክፈል ይህን ይጫኑ ➡️ /pay.")
 
-async def ክፍያለመክፍል(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def Pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = (
         "💰 *የመክፈያ መመሪያ:*\n\n"
         "እባክህ ክፍያዎን ከታች በተቀመጠው የ ባንክ አካውንት ይላኩ:\n\n"
@@ -39,6 +39,7 @@ threading.Thread(target=run_flask, daemon=True).start()
 print("Starting Telegram bot...")
 app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("ክፍያለመክፍል", ክፍያለመክፍል))
+app.add_handler(CommandHandler("Pay", Pay))
 app.run_polling()
+
 
