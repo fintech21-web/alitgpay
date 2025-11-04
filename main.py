@@ -8,21 +8,21 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 TOKEN = os.getenv("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Welcome! Type /pay to get payment details.")
+    await update.message.reply_text("የካናዳ ፕሮሰስ በ ስራ እና ክህሎት ሚንስቴር በኩል ለመጀመር የ መመዝገቢያ ክፍያዎን ይክፈሉ። ለመክፈል ይህን ይጫኑ /ክፍያ ለመክፍል .")
 
 async def pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = (
-        "💰 *Payment Details:*\n\n"
-        "Please send your payment to this account:\n\n"
-        "🏦 Account Name: Fintech Invest\n"
-        "💳 Account Number: 1234567890\n"
-        "🏦 Bank: CBE\n\n"
-        "After payment, send your receipt here."
+        "💰 *የመክፈያ መመሪያ:*\n\n"
+        "እባክህ ክፍያዎን ከታች በተቀመጠው የ ባንክ አካውንት ይላኩ:\n\n"
+        "🏦 የ አካውንት ስም : ዶ/ር አለምነህ ከፍያለው\n"
+        "💳 የ አካውንት : 1000489297275\n"
+        "🏦 የ ባንክ ስም : የኢትዮጵያ ንግድ ባንክ\n\n"
+        "ክፍያዎን ከከፈሉ በኋላ የክፍያ ደረሰኙኝ በዚህ የ telegram Linke @bkuelmis ይላኩ።."
     )
     await update.message.reply_text(message, parse_mode="Markdown")
 
 # --- Flask App Setup (to keep Render service alive) ---
-flask_app = Flask(__name__)
+flask_app = Flask(name)
 
 @flask_app.route('/')
 def home():
